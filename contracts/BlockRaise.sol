@@ -2,6 +2,7 @@
 pragma solidity ^0.8.4;
 
 contract BlockRaise {
+    address public owner;
     struct Campaign {
         address payable owner;
         string title;
@@ -15,8 +16,16 @@ contract BlockRaise {
     event CampaignCreated(uint indexed campaignId, address owner, string title, uint goal);
     event DonationReceived(uint indexed campaignId, uint amount, uint newTotal);
     event FundsWithdrawn(uint indexed campaignId, uint amount);
-    event OwnershipTransferred(uint indexed campaignId, address indexed previousOwner, address indexed newOwner);
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the contract owner can call this function");
+        _;
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
 
     function createCampaign(string memory title, string memory description, uint goal) public {
         require(goal > 0, "Goal must be greater than 0");
@@ -42,14 +51,10 @@ contract BlockRaise {
         emit FundsWithdrawn(campaignIndex, funds);
     }
 
-    function transferOwnership(uint campaignIndex, address newOwner) public {
-        require(campaignIndex < campaigns.length, "Campaign does not exist");
-        Campaign storage campaign = campaigns[campaignIndex];
-        require(msg.sender == campaign.owner, "Only campaign owner can transfer ownership");
+    function transferOwnership(address newOwner) public onlyOwner {
         require(newOwner != address(0), "Invalid new owner address");
-        address previousOwner = campaign.owner;
-        campaign.owner = payable(newOwner);
-        emit OwnershipTransferred(campaignIndex, previousOwner, newOwner);
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
     }
 
     // Function to get the count of campaigns

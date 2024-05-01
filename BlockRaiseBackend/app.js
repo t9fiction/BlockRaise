@@ -19,7 +19,7 @@ console.log('Wallet is set.');
 const contractABIPath = path.resolve(__dirname, "../artifacts/contracts/BlockRaise.sol/BlockRaise.json");
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8')).abi;
 // const contractAddress = '0x6F453495E621a956ee69D6E62a00560B2f419354'; 
-const contractAddress = '0x38e0e2925a02aF693029A6935F60c5354EeDfE01';
+const contractAddress = '0x54b176Ee23254c3b8172BaCDE36CFE6958848409';
 const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
 app.get('/', (req, res) => {
