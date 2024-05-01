@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "D:\\06 - FreeLancing\\Fiverr\\240428-tlanabomb\\BlockRaise\\contracts\\BlockRaise.sol": {
+      "lastModificationDate": 1714579194151,
+      "contentHash": "a9e75f1fcf4592c1cdebe9ef76a04d5c",
+      "sourceName": "contracts/BlockRaise.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "BlockRaise"
+      ]
+    }
+  }
+}
